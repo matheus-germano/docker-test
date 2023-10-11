@@ -1,5 +1,5 @@
 const express = require('express');
-const db = require('./database');
+// const db = require('./database');
 
 const app = express();
 
@@ -19,26 +19,26 @@ app.get('/users', async (req, res) => {
   return res.status(200).json(users);
 });
 
-app.get('/access', async (req, res) => {
-  const logs = await db.query(`
-      SELECT *
-      FROM log
-    `, []); 
+// app.get('/access', async (req, res) => {
+//   const logs = await db.query(`
+//       SELECT *
+//       FROM log
+//     `, []); 
 
-    return res.status(200).json(logs);
-});
+//     return res.status(200).json(logs);
+// });
 
-app.post('/access', async (req, res) => {
-  const accessed_at = new Date().getTime();
+// app.post('/access', async (req, res) => {
+//   const accessed_at = new Date().getTime();
 
-  const [row] = await db.query(`
-      INSERT INTO log (accessed_at)
-      VALUES ($1)
-      RETURNING *
-    `, [accessed_at]);
+//   const [row] = await db.query(`
+//       INSERT INTO log (accessed_at)
+//       VALUES ($1)
+//       RETURNING *
+//     `, [accessed_at]);
 
-  return res.status(200).json(row);
-});
+//   return res.status(200).json(row);
+// });
 
 app.listen(3000, () => {
   console.log('listening on port 3000');
