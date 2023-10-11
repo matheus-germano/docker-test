@@ -9,6 +9,8 @@ services:
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=helloworlddb
     container_name: hello-world-db
+    volumes:
+      - ./src/database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
     ports:
       - '5432:5432'
 
